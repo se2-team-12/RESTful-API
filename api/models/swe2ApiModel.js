@@ -8,10 +8,6 @@ var HeartbeatSchema = new Schema({
     type: String,
     required: 'Heartbeat'
   },
-  Created_date: {
-    type: Date,
-    default: Date.now
-  },
   status: {
     type: [{
       type: String,
