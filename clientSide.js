@@ -4,13 +4,13 @@ var mongoose = require('mongoose');
 mongoose.connect('localhost/swe2');
 var Schema = mongoose.Schema;
 
-var AssetManager = require('../models/hearbeatModel');
+var Heartbeat = require('../models/hearbeatModel');
 var Diagnostic = require('../models/diagnosticModel'); 
 var User = require('../models/userModel'); 
 
 /* GET gateway listing. */
 router.get('/', function (req, res) {
-    AssetManager.find()
+    Heartbeat.find()
         .exec()
         .then(docs =>{
             console.log(docs);
@@ -67,8 +67,7 @@ router.post('/users/login', function(req, res) {
         else if (user){
             res.json({
                 status: 1,
-                id: user._id,
-                message: " success"
+                message: "Successful login"
             });
         }
      
@@ -84,7 +83,7 @@ router.post('/users/login', function(req, res) {
 router.get("/:GatewayId", (req, res, next) => {
   const id = req.params.GatewayId;
   var query = {GatewayId: id}
-  AssetManager.find(query)
+  Heartbeat.find(query)
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -128,6 +127,16 @@ router.get("/onDemand/:GatewayId", (req, res, next) => {
 
 });
 
+
+router.put('/', function (req, res) {
+    res.status(202).json({
+        "Status": "put ok"
+    });
+    //res.status(202).send();
+});
+
+
+
 router.post('/', function (req, res) {
 
     var ODDTest = new Diagnostic({
@@ -166,7 +175,7 @@ router.post('/user', function (req, res) {
         .then(result => {
             console.log(result);
             res.status(201).json({
-                Users: result,
+                User: result,
                 message: "POST Success" 
             });
         })
@@ -182,7 +191,7 @@ router.post('/user', function (req, res) {
 
 router.delete("/:GatewayId", (req, res, next) => {
   const id = req.params.GatewayId;
-  AssetManager.remove({ _id: id })
+  Heartbeat.remove({ _id: id })
     .exec()
     .then(result => {
         console.log("Heartbeat deleted");
