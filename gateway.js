@@ -92,7 +92,7 @@ router.post('/heartbeat/:GatewayId', function (req, res) {
 router.post('/diagnostic/test', function (req, res) {
 
     var ODDTest = new Diagnostic({
-        ODDType: req.body.ODDType,
+        ODD: req.body.ODDType,
         GatewayId: req.body.GatewayId,
         Type: req.body.Type,
         Result: req.body.Result,
