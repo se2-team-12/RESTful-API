@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var DiagnosticSchema = new Schema({
-    ODDType: String,
+    ODD: String,
     GatewayId : String,
     Type: String,
     Result: String,
