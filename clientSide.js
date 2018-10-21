@@ -25,25 +25,6 @@ router.get('/', function (req, res) {
 
 });
 
-router.get('/asset', function (req, res) {
-    var userName = req.query.userName;
-    var password = req.query.password;
-    console.log(userName)
-    console.log(password)
-    User.find({$and: [{userName: {userName}},{password: {password}}]})
-        .exec()
-        .then(docs =>{
-            console.log(docs);
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-
-});
 
 router.post('/users/login', function(req, res) {
      var email = req.body.email;
