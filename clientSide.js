@@ -128,16 +128,6 @@ router.get("/onDemand/:GatewayId", (req, res, next) => {
 
 });
 
-
-router.put('/', function (req, res) {
-    res.status(202).json({
-        "Status": "put ok"
-    });
-    //res.status(202).send();
-});
-
-
-
 router.post('/', function (req, res) {
 
     var ODDTest = new Diagnostic({
