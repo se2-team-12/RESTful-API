@@ -75,6 +75,12 @@ router.post('/heartbeat/:GatewayId', function (req, res) {
                 odd: test,
                 message: "Success" 
             });
+    Diagnostic.remove({ GatewayId: id })
+        .exec()
+        .then(result => {
+            console.log("Diagnostics deleted");
+            res.status(200).json(result);
+    })
         })
         .catch(err => {
             console.log(err);
